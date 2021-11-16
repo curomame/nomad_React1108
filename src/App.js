@@ -1,29 +1,49 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
+
+
 
 function App() {
 
-  const [toDo, setToDo] = useState("");
-  const [toDos,setToDos] = useState([]);
-  const onChange = (event) => setToDo(event.target.value);
-  const onSubmit = (event) => {
-    event.preventDefault();
-      if (toDo === ""){
-      return ;
-    }
-    setToDos((currentArray) => [toDo,...currentArray]);
-    setToDo("");
+  const [loading, setLoading] = useState(true);
+  const [coins, setCoins] = useState([]);
+  const [dollar, setDollar] = useState(0);
+  const [convertcoin, setConvertcoin] = useState("BTC");
+  const onChange = (e) => {
 
-};
+    let A = e.target.value;
+    let B = coins.filter(function(data){return data.symbol === convertcoin})[0].quotes.USD.price;
+    
+    setDollar(A / B);
+  }
 
-return (
+  const checkDollar = (e) => {
+    
+    let D = coins.filter(function(data){return data.symbol === e.target.value})[0].quotes.USD.price;
+    console.log(dollar);
+    setDollar((prev) => prev / D);
+    setConvertcoin(e.target.value);
+
+    };
+
+  console.log()
+
+  useEffect(()=> {
+    fetch("https://api.coinpaprika.com/v1/tickers")
+    .then((res) => res.json())
+    .then((json) => setCoins(json));
+    setLoading(false);
+
+  },[])
+  
+    return (
 <div>
-  <h1>My To Dos ({toDos.length})</h1>
-  <form onSubmit={onSubmit}>
-    <input onChange={onChange} value={toDo} type="text" placeholder="Write your to do.."/>
-    <button type="submit">Add To Do</button>
-  </form>
+  <h1>The Coins! {loading ? "" : `${coins.length}`} </h1>
+  <p>Input Your Dollar</p>
+  <input onChange={onChange} type="number"></input>
   <hr/>
-  {toDos.map((item, index) => <li key={index}>{item}</li>)}
+  {loading ? <strong> Loading... </strong> : (<select onChange={checkDollar}>{coins.map((coin)=> <option value={coin.symbol}>{coin.name} ({coin.symbol}) : {coin.quotes.USD.price} USD </option>)}</select>)}
+  <hr/>
+  {loading ? "" : <p>You can buy {dollar} {convertcoin} Coins</p> }
 </div>
 );
 }
