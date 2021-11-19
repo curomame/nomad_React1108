@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/nomad_ReactNative1108/static/js/main.f8e07628.chunk.js",
-    "main.js.map": "/nomad_ReactNative1108/static/js/main.f8e07628.chunk.js.map",
+    "main.js": "/nomad_ReactNative1108/static/js/main.708b0b08.chunk.js",
+    "main.js.map": "/nomad_ReactNative1108/static/js/main.708b0b08.chunk.js.map",
     "runtime-main.js": "/nomad_ReactNative1108/static/js/runtime-main.ceb0158f.js",
     "runtime-main.js.map": "/nomad_ReactNative1108/static/js/runtime-main.ceb0158f.js.map",
     "static/js/2.2c0cd4b5.chunk.js": "/nomad_ReactNative1108/static/js/2.2c0cd4b5.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.ceb0158f.js",
     "static/js/2.2c0cd4b5.chunk.js",
-    "static/js/main.f8e07628.chunk.js"
+    "static/js/main.708b0b08.chunk.js"
   ]
 }
