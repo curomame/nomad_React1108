@@ -1,5 +1,5 @@
 # 21.11.19 최신판으로 완룟!
--> React Native 
+-> React Native 시작 준비 중!
 
 
 
